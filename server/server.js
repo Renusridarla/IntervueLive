@@ -60,6 +60,10 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`[IntervueLive Server] Running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`[IntervueLive Server] Running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
